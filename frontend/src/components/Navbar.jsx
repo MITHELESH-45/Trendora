@@ -3,16 +3,18 @@ import {assets} from '../assets/assets'
 import { NavLink,Link } from 'react-router-dom'
 import { useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
+import { useCheckoutStore } from "../store/useCheckoutStore"; 
 const Navbar = () => {
 
     const [visible,setVisible]=useState(false);
     const {setShowSearch,getCartCount,navigate,token,setToken,setCartItems}=useContext(ShopContext);
-    
+     const { clearForm } = useCheckoutStore(); 
     const logout=()=>{
        navigate('/login')
       localStorage.removeItem('token')
       setToken('');
-      setCartItems({})
+      setCartItems({});
+      clearForm();
      
     }
 
