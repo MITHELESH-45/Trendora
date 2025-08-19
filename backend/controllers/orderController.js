@@ -2,6 +2,7 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from 'stripe'
+import razorpay from 'razorpay'
 
 //global variables
 
@@ -11,6 +12,10 @@ const deliveryCharge=10;
 
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
 
+const razorpayInstance=new razorpay({
+    key_id:process.env.RAZORPAY_KEY_ID,
+    key_secret:process.env.RAZORPAY_KEY_SECRET,
+})
 //placing orders using cod
 
 const placeOrder = async(req,res)=>{
@@ -122,9 +127,62 @@ const verifyStripe = async (req, res) => {
 }
 //placing orders using razorpay
 const placeOrderRazorpay= async(req,res)=>{
+       try{
+        const {userId,items,amount,address}=req.body
 
+         const orderData={
+            userId,
+            items,
+            address,
+            amount,
+            paymentMethod:"Razorpay",
+            payment:false,
+            date:Date.now()
+
+        }  
+        const newOrder = new orderModel(orderData);
+        await newOrder.save();
+
+        const options={
+            amount:amount*100,
+            currency:currency.toUpperCase(),
+            receipt:newOrder._id.toString()
+        }
+
+        await razorpayInstance.orders.create(options,(error,order)=>{
+            if(error){
+                console.log(error);
+                res.json({success:false,message:error.message});
+            }
+            res,json({success:true,message:error.message});
+        })
+       }catch(error){
+             console.log(error);
+             res.json({success:false,message:error.message});
+       }
 }
 
+//verify razorpay
+
+const verifyRazorpay=async(req,res)=>{
+    try{
+        const{userId,razorpay_order_id}=req.body
+
+        const orderInfo=await razorpayInstance.orders.fetch(razorpay_order_id)
+
+        if(orderInfo.status=='paid'){
+            await orderModel.findByIdAndUpdate(orderInfo.receipt,{payment:true});
+            await userModel.findByIdAndUpdate(userId,{cartData:{}})
+            res.json({success:true,message:"payment successfull"});
+        }
+        else{
+            res.json({success:false,message:"payment failed"});
+        }
+    }catch(error){
+          console.log(error);
+          res.json({success:false,message:error.message});
+       }
+}
 
 
 //all orders data for admin panel
@@ -171,4 +229,4 @@ const updateStatus = async(req,res)=>{
 }
 
 
-export {verifyStripe,placeOrder,placeOrderRazorpay,placeOrderStripe,allOrders,updateStatus,userOrders};
+export {verifyRazorpay,verifyStripe,placeOrder,placeOrderRazorpay,placeOrderStripe,allOrders,updateStatus,userOrders};

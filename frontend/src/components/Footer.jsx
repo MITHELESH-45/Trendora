@@ -9,7 +9,7 @@ const Footer = () => {
         <div className=''>
              <img src={assets.logo} className='mb-4 w-60' alt="" />
              <p className='w-full mid:w-2/3 text-gray-600'>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit illo error dolore eveniet veniam laborum a repudiandae quae deleniti. Et, accusamus ipsa neque
+               Trendora is your go-to destination for modern and elegant fashion. We are committed to providing high-quality products that combine style, comfort, and durability.
              </p>
         </div>
 
@@ -27,7 +27,7 @@ const Footer = () => {
             <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
             <ul className='flex flex-col gap-1 text-gray-600'>
                 <li>+91343435435</li>
-                <li>contact@trendora.com</li>
+                <li>admin@trendora.com</li>
 
             </ul>
         </div>

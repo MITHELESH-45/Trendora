@@ -1,47 +1,55 @@
-import React from 'react'
-import Title from '../components/Title'
-import { assets } from '../assets/assets'
-import NewsLetterBox from '../components/NewsLetterBox'
+import React from 'react';
+import Title from '../components/Title';
+import { assets } from '../assets/assets';
+import NewsLetterBox from '../components/NewsLetterBox';
 
 const About = () => {
   return (
     <div>
       <div className='text-2xl text-center pt-8 border-t'>
-            <Title text1={'ABOUT'} text2={'US'} />
+        <Title text1={'ABOUT'} text2={'US'} />
       </div>
       <div className='my-10 flex flex-col md:flex-row gap-16'>
-           <img className='w-full md:max-w-[450px]'src={assets.about_img}></img>
-           
-           <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro ut nobis necessitatibus fugiat ex culpa possimus expedita a sequi iure, exercitationem esse sunt tenetur natus iste quidem quisquam, modi nostrum!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis facilis in molestiae sit, eveniet natus architecto sapiente modi beatae at, officiis ut laborum commodi veniam excepturi aut aspernatur fugit distinctio.</p>
-              <b className='text-gray-800'>Our Mission</b>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis voluptatum nobis velit voluptatem eveniet non tenetur. A recusandae quasi, dolore accusamus fuga, mollitia labore deserunt hic, ducimus ex molestiae? Sunt!</p>
-           
-           </div>
-  
+        <img className='w-full md:max-w-[450px]' src={assets.about_img} alt="A person wearing a trendy t-shirt" />
+        <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
+          <p>
+            Welcome to Trendora, your number one source for the latest trends in fashion. We are dedicated to providing you with the best in clothing, with a focus on quality, uniqueness, and exceptional customer service.
+          </p>
+          <p>
+            Founded in 2025, Trendora has come a long way from its beginnings. We now serve customers all over the world, and we are thrilled to be a part of the eco-friendly wing of the fashion industry. We hope you enjoy our products as much as we enjoy offering them to you.
+          </p>
+          <b className='text-gray-800'>Our Mission</b>
+          <p>
+            Our mission is to empower our customers to express their unique style through our thoughtfully curated collections, offering a seamless and inspiring shopping experience.
+          </p>
+        </div>
       </div>
-       <div className='text-xl py-4'>
-               <Title text1={'WHY'} text2={'CHOOSE US'} />
+      <div className='text-xl py-4'>
+        <Title text1={'WHY'} text2={'CHOOSE US'} />
+      </div>
+      <div className='flex flex-col md:flex-row text-sm mb-20'>
+        <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+          <b className='w-30 text-xl'>Quality Assurance:</b>
+          <p className='text-gray-600'>
+            We meticulously source our materials and partner with ethical manufacturers to ensure every garment meets our high standards of quality, comfort, and durability.
+          </p>
         </div>
-        <div className='flex flex-col md:flex-row text-sm mb-20'>
-          <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-            <b>Quality Assurance:</b>
-            <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima pariatur nulla eveniet amet assumenda eum soluta nobis tempora reprehenderit, dicta repellendus quibusdam, ipsum necessitatibus facere perferendis tenetur similique nisi nostrum.</p>
-          </div>
-          <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-            <b>Convenience:</b>
-            <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima pariatur nulla eveniet amet assumenda eum soluta nobis tempora reprehenderit, dicta repellendus quibusdam, ipsum necessitatibus facere perferendis tenetur similique nisi nostrum.</p>
-          </div>
-          <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-            <b>Exceptional Customer Service:</b>
-            <p className='text-gray-600'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At accusamus totam magni facere minus in odit, id repudiandae tenetur aperiam, suscipit perferendis a ipsam soluta voluptates. Deleniti odio ratione beatae.</p>
-          </div>
+        <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+          <b className='w-30 text-xl'>Convenience:</b>
+          <p className='text-gray-600'>
+            Our user-friendly online store, secure payment options, and fast shipping ensure a hassle-free shopping experience from the comfort of your home.
+          </p>
         </div>
-
-        <NewsLetterBox />
+        <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+          <b className='w-30 text-xl' >Exceptional Customer Service:</b>
+          <p className='text-gray-600'>
+            Your satisfaction is our top priority. Our dedicated support team is always ready to assist you with any questions or concerns.
+          </p>
+        </div>
+      </div>
+      <NewsLetterBox />
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;
