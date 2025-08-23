@@ -4,25 +4,24 @@ import { NavLink,Link } from 'react-router-dom'
 import { useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { useCheckoutStore } from "../store/useCheckoutStore"; 
-const Navbar = () => {
 
+const Navbar = () => {
     const [visible,setVisible]=useState(false);
     const {setShowSearch,getCartCount,navigate,token,setToken,setCartItems}=useContext(ShopContext);
-     const { clearForm } = useCheckoutStore(); 
+    const { clearForm } = useCheckoutStore(); 
+    
     const logout=()=>{
+       localStorage.removeItem('token')
+       setToken('');
+       setCartItems({});
+       clearForm();
        navigate('/login')
-      localStorage.removeItem('token')
-      setToken('');
-      setCartItems({});
-      clearForm();
-     
     }
-
 
     return (
     <div className='flex items-center justify-between py-5 font-medium'>
 
-        <Link to='/'><img src={assets.logo} className='w-60'alt=""/></Link>
+        <Link to='/'><img src={assets.logo} className='w-40 sm:w-40 md:w-48 lg:w-60'alt=""/></Link>
 
         <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
 
@@ -51,7 +50,6 @@ const Navbar = () => {
              <img onClick={()=>setShowSearch(true)}src={assets.search_icon} className='w-5 cursor-pointer' alt="" />
              <div className='group relative'>
 
-                
                 <img onClick={()=>token?null:navigate('/login')}className='w-5 cursor-pointer' src={assets.profile_icon} alt=""/>
                 {/*--------dropdown-------*/}
                 {
@@ -62,7 +60,6 @@ const Navbar = () => {
                         <p onClick={()=>navigate('/orders')}className='cursor-pointer hover:text-black'>Orders</p>
                         <p onClick={logout}className='cursor-pointer hover:text-black'>Logout</p>
                     </div>
-                   
                 </div>
                 }
              </div>
@@ -86,7 +83,7 @@ const Navbar = () => {
             <NavLink className='py-2 pl-6 border'to='/'>HOME</NavLink>
             <NavLink className='py-2 pl-6 border'to='/collection'>COLLECTION</NavLink>
             <NavLink className='py-2 pl-6 border'to='/about'>ABOUT</NavLink>
-            <NavLink className='py-2 pl-6 border'to='/cotact'>CONTACT</NavLink>
+            <NavLink className='py-2 pl-6 border'to='/contact'>CONTACT</NavLink>
 
               </div>
         </div>

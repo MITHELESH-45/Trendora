@@ -17,7 +17,7 @@ const Product = () => {
   const fetchProductData=async()=>{
           products.map((item)=>{
 
-            if(item._id==productId){
+            if(item._id===productId){
               setProductData(item);
               setImage(item.image[0])
               return null;
